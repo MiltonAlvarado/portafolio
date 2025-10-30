@@ -1,0 +1,13 @@
+---
+const items = [
+  { href: "/", label: "INICIO" },
+  { href: "/unah", label: "PROYECTOS" },
+  { href: "../aboutme", label: "SOBRE MÍ" },
+  { href: "../contact", label: "CONTACTO" },
+];
+---
+<aside class="sidebar">
+  {items.map((i) => (
+    <a class="nav-pill" href={i.href}>{i.label}</a>
+  ))}
+</aside>

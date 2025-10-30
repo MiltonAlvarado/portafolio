@@ -1,0 +1,62 @@
+---
+import Layout from "../layouts/layout.astro";
+
+const pageTitle = "Inicio";
+const links = [
+  { href: "/", label: "INICIO" },
+  { href: "/unah", label: "PROYECTOS" },
+  { href: "/aboutme", label: "SOBRE MÍ" },
+  { href: "/contact", label: "CONTACTO" },
+];
+---
+<Layout page={pageTitle}>
+  <main class="min-h-[100svh]">
+    <nav class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-zinc-950/20">
+      <div class="mx-auto max-w-7xl px-4 py-4">
+        <ul class="flex flex-wrap items-center justify-center gap-3">
+          {links.map((l) => (
+            <li>
+              <a
+                href={l.href}
+                class="inline-block rounded-xl bg-zinc-800/70 hover:bg-zinc-700/70
+                       ring-1 ring-white/10 px-4 py-2 text-sm font-semibold tracking-wide text-zinc-100
+                       transition-colors"
+              >
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+
+    <div class="flex flex-row justify-center gap-40 h-[500px] mt-20"> 
+      <div>
+        <p1 class="h-440 w-400 text-4xl font-bold text-center mt-10  grow-0"> 
+            Milton Alvarado - Desarrollador Web Jr.  
+        </p1> 
+        <section class=" h-1 w-200 mt-5 bg-gray-400 grow-0 rounded-3xl mb-30"> 
+        </section> 
+        <h1 class="text-center mb-50">  
+          En este portafolio encontrará soluciones que combinan estética funcional,<br> 
+          arquitectura limpia y valor tangible. Le invito a recorrer los proyectos <br>
+          en los cuales muestran cómo transformo objetivos en productos fiables, <br>
+          listos para crecer y para generar confianza donde más importa.
+        </h1>
+        <div class="dots">
+          <span class="dot dot--red"></span>
+          <span class="dot dot--yellow"></span>
+          <span class="dot dot--green"></span>
+        </div>
+      </div>
+      <div>
+        <img src="/public/yo.png" alt="" class="w-120 h-120 relative rounded-3xl bg-zinc-900/60 ring-1 ring-white/10 p-2"/>
+      </div>
+        
+      
+
+
+    </div>
+
+  </main>
+</Layout>

@@ -1,0 +1,69 @@
+---
+import Layout from "../layouts/layout.astro";
+import Sidebar from "../components/sidebar.astro";
+import HeroCard from "../components/herocard.astro";
+
+
+const pageTitle = "Contacto";
+---
+<Layout page={pageTitle}>
+  <div class="app">
+    <Sidebar />
+
+    <main class="content">
+      <HeroCard />
+
+      <!-- Sección Contacto -->
+      <section class="mt-20">
+        <h1 class="text-2xl md:text-3xl font-bold text-center mb-2">
+          CONTACTO
+        </h1>
+        <div class="w-24 h-[2px] bg-slate-400 mb-6 mx-auto"></div>
+        <p class="text-slate-300 mb-10 text-center">
+          Puedes encontrarme en
+        </p>
+
+        <!-- Tarjetas de contacto -->
+        <div class="flex flex-wrap justify-center gap-6">
+
+          <!-- Correo -->
+          <div class="relative bg-gradient-to-b from-slate-800 to-slate-700 p-6 rounded-xl w-64 text-center shadow-md hover:scale-105 transition-transform">
+            <div class="flex flex-col items-center gap-3">
+              <img src="/icons/mail.svg" alt="Correo" class="w-10 h-10" />
+              <p class="text-sm font-semibold text-white">maalvaradof@unah.hn</p>
+            </div>
+
+            <a
+              href="mailto:maalvaradof@unah.hn"
+              class="absolute inset-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-white/50"
+              aria-label="Enviar correo a maalvaradof@unah.hn"
+            ></a>
+          </div>
+
+
+          <!-- Teléfono -->
+          <div class="bg-gradient-to-b from-slate-800 to-slate-700 p-6 rounded-xl w-64 text-center shadow-md hover:scale-105 transition-transform">
+            <div class="flex flex-col items-center gap-3">
+              <img src="/icons/phone.svg" alt="Teléfono" class="w-10 h-10" />
+              <p class="text-sm font-semibold text-white">+504 9574-9162</p>
+            </div>
+          </div>
+
+          <!-- LinkedIn -->
+          <div class="relative bg-gradient-to-b from-slate-800 to-slate-700 p-6 rounded-xl w-64 text-center shadow-md hover:scale-105 transition-transform">
+            <div class="flex flex-col items-center gap-3">
+              <img src="/icons/linkedin.svg" alt="LinkedIn" class="w-10 h-10" />
+              <p class="text-sm font-semibold text-white">Milton Alvarado</p>
+            </div>
+            <a
+              href="https://www.linkedin.com/in/milton-alejandro-0a024b343/"
+              class="absolute inset-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-white/50"
+              aria-label="Ir a linkedin"
+            ></a>
+          </div>
+
+        </div>
+      </section>
+    </main>
+  </div>
+</Layout>

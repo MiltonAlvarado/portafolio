@@ -1,0 +1,157 @@
+---
+import Layout from "../layouts/layout.astro";
+import Sidebar from "../components/sidebar.astro";
+import HeroCard from "../components/herocard.astro";
+import { skills, languages, levelScore, levelRank, 
+        vision, education, hobbies, emprendimiento } 
+        from "../content/db/data.ts";
+
+const pageTitle = "Sobre Mí";
+
+/** Intro */
+const intro = [
+  "Mi nombre es Milton Alvarado, soy desarrollador full-stack con enfoque en diseño limpio, arquitectura lógica y eficiencia técnica. Soy un profesional con una visión centrada en la innovación y la construcción de experiencias profesionales.",
+  "Desarrollo soluciones seguras y consistentes, orientadas a alcanzar las metas u objetivos estratégicos del negocio y a demostrar impacto medible.",
+  "Disfruto aprender de cada proyecto, mantenerme actualizado y aplicar metodologías que optimicen resultados."
+];
+
+
+
+const sortByLevelDesc = (items: { name: string; level: string }[]) =>
+  [...items].sort((a, b) => (levelRank[b.level] ?? 0) - (levelRank[a.level] ?? 0));
+
+
+function pct(level: string) {
+  return levelScore[level] ?? 0;
+}
+---
+
+<Layout page={pageTitle}>
+  <div class="app">
+    <Sidebar />
+
+    <main class="content">
+      <HeroCard />
+
+      <!-- Introducción --> 
+      <section class="mt-8 space-y-4 leading-relaxed text-zinc-200 px-4 py-8 mx-auto max-w-5xl">
+        <h2 class="text-2xl font-semibold">Sobre mí</h2>
+        {intro.map((p) => <p>{p}</p>)}
+      </section>
+
+      <!-- Habilidades -->
+        <section class="mt-12 px-4 py-8 mx-auto max-w-7xl">
+        <h2 class="text-2xl font-semibold">Habilidades y nivel de expertise</h2>
+        <p class="mt-2 text-sm text-zinc-400">
+          Entusiasta 5–25%, Medio 26–50%, Alto 51–64%, Avanzado 65–79%, Experto 80–100%.
+        </p>
+
+        <!-- CATEGORÍAS APILADAS -->
+        <div class="mt-8 space-y-12">
+          {skills.map((group) => {
+            const ordered = sortByLevelDesc(group.items);
+            const mid = Math.ceil(ordered.length / 2);
+            const left = ordered.slice(0, mid);
+            const right = ordered.slice(mid);
+
+            return (
+              <div class="border-t border-white/10 pt-8 first:pt-0 first:border-0">
+                <h3 class="text-xl font-semibold mb-6">{group.title}</h3>
+
+                <!-- Dos columnas dentro de la categoría, bien separadas -->
+                <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-24 gap-y-6">
+                  <!-- Columna izquierda -->
+                  <div class="space-y-4 md:pr-20">
+                    {left.map((s) => (
+                      <div class="space-y-1.5">
+                        <div class="flex items-center justify-between text-sm">
+                          <span>{s.name}</span>
+                          <span class="text-zinc-400">{s.level}</span>
+                        </div>
+                        <div class="h-2 w-full rounded-full bg-zinc-800">
+                          <div
+                            class="h-2 rounded-full bg-white"
+                            style={`width:${pct(s.level)}%`}
+                            title={`${s.name} • ${s.level}`}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <!-- Columna derecha -->
+                  <div class="space-y-4 md:pl-20">
+                    {right.map((s) => (
+                      <div class="space-y-1.5">
+                        <div class="flex items-center justify-between text-sm">
+                          <span>{s.name}</span>
+                          <span class="text-zinc-400">{s.level}</span>
+                        </div>
+                        <div class="h-2 w-full rounded-full bg-zinc-800">
+                          <div
+                            class="h-2 rounded-full bg-white"
+                            style={`width:${pct(s.level)}%`}
+                            title={`${s.name} • ${s.level}`}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      <!-- Idiomas (lista vertical, barras más pequeñas) -->
+      <section class="mt-12 mx-auto max-w-7xl px-4">
+        <h2 class="text-2xl font-semibold">Idiomas</h2>
+
+        <div class="mt-6 space-y-4 max-w-xl">
+          {languages.map((l) => (
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between text-sm">
+                <span class="font-medium">{l.name}</span>
+                <span class="text-zinc-400">{l.level}</span>
+              </div>
+              <div class="h-2 w-full rounded-full bg-zinc-800">
+                <div
+                  class="h-2 rounded-full bg-white"
+                  style={`width:${pct(l.level)}%`}
+                  title={`${l.name} • ${l.level}`}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Visión profesional -->
+       <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-24 gap-y-6 mt-20">
+            <section class="mt-20 space-y-4 px-4 mx-auto max-w-7xl">
+                <h2 class="text-2xl font-semibold text-center">Visión profesional</h2>
+                <p class="leading-relaxed text-zinc-200 px-4 py-8 mx-auto max-w-2xl">{vision}</p>
+            </section>
+
+            <!-- Formación profesional -->
+            <section class="mt-20 space-y-4 px-4 mx-auto max-w-7xl">
+                <h2 class="text-2xl font-semibold text-center">Formación profesional</h2>
+                <p class="leading-relaxed text-zinc-200 px-4 py-8 mx-auto max-w-2xl">{education}</p>
+            </section>
+
+            <!-- Hobbies -->
+            <section class="mt-10 space-y-4 px-4 mx-auto max-w-7xl">
+                <h2 class="text-2xl font-semibold text-center">Hobbies</h2>
+                <p class="leading-relaxed text-zinc-200 px-4 py-8 mx-auto max-w-2xl">{hobbies}</p>
+            </section>
+
+            <!-- Emprendimiento -->
+            <section class="mt-10 space-y-4 px-4 mx-auto max-w-7xl mb-8">
+                <h2 class="text-2xl font-semibold text-center">Emprendimiento</h2>
+                <p class="leading-relaxed text-zinc-200 px-4 py-8 mx-auto max-w-2xl">{emprendimiento}</p>
+            </section>
+        </div>
+    </main>
+  </div>
+</Layout>

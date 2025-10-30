@@ -1,0 +1,31 @@
+---
+import type {Levels} from "../interfaces/interface"
+
+interface Props {
+    levels: Levels[],
+    page: string
+}
+
+const {levels, page} = Astro.props as Props;
+
+---
+
+
+<nav class="tabs" role="tablist" aria-label="Proyectos">
+    <div class="max-w-6xl mx-auto">
+        <div class="flex items-center -mb-px overflow-x-auto">
+            {
+                levels.map( (item) => (
+                    <a
+                        href={ item.url }
+                        class={ `tab-button tab-${ ( item.title  === page) ? "active" : "inactive" } p-4 border-b-2 font-semibold transition-colors duration-200 flex-shrink-0` }
+                    >
+                        {item.title}
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+</nav>
+
+

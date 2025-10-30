@@ -1,0 +1,54 @@
+---
+import Layout from "../layouts/layout.astro";
+import Sidebar from "../components/sidebar.astro";
+import HeroCard from "../components/herocard.astro";
+import SectionTitle from "../components/sectiontitle.astro";
+import { proyectos } from "../content/db/data.ts";
+import ProjectCard from "../components/projectcard.astro";
+import Tabs from "../components/Tabs.astro";
+import { levels } from "../content/db/items";
+import type {Project} from "../interfaces/interface.ts";
+
+export async function getStaticPaths() {
+  return proyectos.map((entry: Project) => ({
+    params: { slug: entry.slug}, props: { entry }
+  }));
+}
+
+interface Props {
+  entry: Project
+}
+
+const {entry} = Astro.props as Props;
+
+interface Props {
+    page: string
+}
+
+const { page } = Astro.props as Props;
+---
+<Layout page={entry.pageTitle}>
+  <div class="app">
+    <Sidebar />
+    <main class="p-6">
+      <HeroCard />
+      <SectionTitle text="Proyectos" />
+
+      <Tabs 
+          levels={levels}
+          page={page}
+        />
+        
+      <div class="">
+        <ProjectCard
+          titulo={entry.titulo}
+          descripcion={entry.descripcion}
+          link={entry.link}
+          img={entry.img}
+        />
+      </div>
+    </main>
+  </div>
+</Layout>
+
+
