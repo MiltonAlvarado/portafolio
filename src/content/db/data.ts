@@ -60,10 +60,19 @@ export const proyectos: Project[] = [
     slug: "/lenguajeprogramacion",
     titulo: "Creación de Lenguaje de Programación",
     descripcion:
-      "Lenguaje de programación desarrollado desde cero, aplicando conceptos fundamentales de compiladores e intérpretes. Este proyecto me permitió profundizar en la teoría de lenguajes formales, sintaxis y semántica, así como en la implementación práctica de un lenguaje funcional y eficiente.",
+      "Lenguaje de programación desarrollado desde cero utilizando Python, gramáticas BNF/EBNF y el parser Lark, creando una estructura completa que incluye un archivo de gramática formal, un analizador sintáctico, un Transformer personalizado para recorrer y ejecutar el árbol AST, un módulo de acciones semánticas, manejo de expresiones regulares y un intérprete funcional capaz de procesar programas escritos en el nuevo lenguaje; este proyecto me permitió profundizar en teoría de compiladores, diseño de lenguajes formales y la construcción práctica de un lenguaje propio.",
     link: "https://github.com/D-AlessandroRodriguez/ProyectoCompiladores.git",
     img: "/bnf.jpeg"
-  }
+  },
+  {
+    pageTitle: "Despliegue de Azure con Terraform",
+    slug: "/terraform",
+    titulo: "Despliegue de Azure con Terraform",
+    descripcion:
+      "Implementé una arquitectura completa en Microsoft Azure utilizando Terraform como infraestructura de código, aprovisionando de forma automatizada Web Apps en contenedores, APIs y Azure SQL Database, Azure Key Vault para la gestión de secretos y un entorno de datos compuesto por Data Lake Gen2, Azure Databricks y Azure Data Factory, logrando despliegues reproducibles, escalables y fáciles de mantener en entornos cloud.",
+      link: "https://github.com/MiltonAlvarado/arquitectura_terraform_flota_vehiculos.git",
+      img: "/terraform.png"
+  },
 ];
 
 

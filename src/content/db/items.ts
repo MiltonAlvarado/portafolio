@@ -13,5 +13,7 @@ export const levels: Levels[] = [
     url: "/redneuronal"},
     {title: "Lenguaje de Programación",
     url: "/lenguajeprogramacion"},
+    {title: "Despliegue de Azure con Terraform",
+    url: "/terraform"},
 ];
 
