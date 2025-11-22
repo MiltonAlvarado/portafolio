@@ -5,6 +5,10 @@ export const levels: Levels[] = [
     url: "/unah"},
     {title: "Sistema Facultad de Odontología - UNAH",
     url: "/odontologia"},
+    {title: "Despliegue de Azure con Terraform",
+    url: "/terraform"},
+    {title: "Pokemon API",
+    url: "/poke"},
     {title: "Sistema Ebay",
     url: "/ebay"},
     {title: "Generador Curriculum Vitae",
@@ -13,7 +17,6 @@ export const levels: Levels[] = [
     url: "/redneuronal"},
     {title: "Lenguaje de Programación",
     url: "/lenguajeprogramacion"},
-    {title: "Despliegue de Azure con Terraform",
-    url: "/terraform"},
+    
 ];
 

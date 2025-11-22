@@ -53,7 +53,7 @@ export const proyectos: Project[] = [
     descripcion:
       "Desarrollé una red neuronal en Python, trabajando desde cero sin el uso de librerías de inteligencia artificial. A través de este proyecto apliqué lógica matemática y pensamiento estructurado para que el sistema alcanzara más del 90 % de precisión en el reconocimiento de rostros. Fue una experiencia que reafirmó mi capacidad para construir soluciones complejas con enfoque claro, manteniendo siempre la eficiencia, la coherencia y el sentido técnico que distinguen mi trabajo.",
     link: "https://github.com/MiltonAlvarado/Reconocimiento-de-rostros.git"  ,
-    img: "/ReconocimientoFacial.png"
+    img: "/ReconocimientoFacial1.png"
   },
   {
     pageTitle: "Creación de Lenguaje de Programación",
@@ -72,6 +72,15 @@ export const proyectos: Project[] = [
       "Implementé una arquitectura completa en Microsoft Azure utilizando Terraform como infraestructura de código, aprovisionando de forma automatizada Web Apps en contenedores, APIs y Azure SQL Database, Azure Key Vault para la gestión de secretos y un entorno de datos compuesto por Data Lake Gen2, Azure Databricks y Azure Data Factory, logrando despliegues reproducibles, escalables y fáciles de mantener en entornos cloud.",
       link: "https://github.com/MiltonAlvarado/arquitectura_terraform_flota_vehiculos.git",
       img: "/terraform.png"
+  },
+  {
+    pageTitle: "Pokemon API",
+    slug: "/poke",
+    titulo: "Pokemon API con Azure Terraform",
+    descripcion:
+      "Desarrollé un generador de reportes basado en PokeAPI donde el usuario solicita reportes CSV de Pokémon y el sistema procesa la petición en segundo plano. La arquitectura usa una interfaz en Next.js sobre Azure App Service, una API en FastAPI que orquesta las solicitudes, una Azure Function en Python conectada a Blob Storage para la generación y almacenamiento de los archivos, además de Azure SQL Database y Terraform para definir la infraestructura. En esta versión el reto fue extender esa base para implementar la eliminación completa de reportes, enriquecer los CSV con estadísticas y habilidades de cada Pokémon y agregar la opción de cantidad de n registros, manteniendo el sistema estable y desplegado en Azure.",
+    link: "https://ui-pokequequepcaiii-dev.azurewebsites.net/"  ,
+    img: "/Arquitectura.png"
   },
 ];
 
