@@ -149,30 +149,71 @@ export const languages: Language[] = [
 // EXPORTACIÓN DE HABILIDADES
 export const skills: Skill[] = [
   {
-    title: "Frontend",
+    title: "Cibersecurity",
+    items: [
+      { name: "SOC Monitoring and SIEM", level: "Proficient" },
+      { name: "Threat Detection & Log Analysis", level: "Proficient" },
+      { name: "Vulnerability Assessment", level: "Proficient" },
+      { name: "Network Security Analysis", level: "Proficient" },
+      { name: "Incident Triage & Response", level: "Intermediate" },
+      { name: "Endpoint Security & Monitoring", level: "Intermediate" },
+      { name: "Threat Intelligence & Hunting", level: "Intermediate" },
+      { name: "Offensive Security / Penetration Testing", level: "Enthusiast" }
+    ]
+  },
+  {
+    "title": "Networking",
+    "items": [
+      { "name": "Routing & Switching", "level": "Advanced" },
+      { "name": "Network Configuration & Troubleshooting", "level": "Advanced" },
+      { "name": "VLANs & Network Segmentation", "level": "Advanced" },
+      { "name": "Subnetting & IP Addressing", "level": "Advanced" },
+      { "name": "TCP/IP & Network Protocols", "level": "Advanced" },
+      { "name": "Dynamic Routing (OSPF, EIGRP, BGP)", "level": "Proficient" },
+      { "name": "ACLs & Traffic Filtering", "level": "Proficient" },
+      { "name": "DHCP & Network Services", "level": "Proficient" },
+      { "name": "NAT / PAT", "level": "Intermediate" },
+      { "name": "Packet Analysis & Network Diagnostics", "level": "Enthusiast" }
+    ]
+  },
+  {
+    title: "Infrastructure",
+    items: [
+      { name: "Active Directory Domain Services", level: "Advanced" },
+      { name: "Domain Name System (DNS)", level: "Advanced" },
+      { name: "Internet Information Services", level: "Proficient" },
+      { name: "Windows Server", level: "Advanced" },
+      { name: "Group Policy (GPO)", level: "Advanced" },
+      { name: "Linux Administration", level: "Proficient" },
+      { name: "Terraform", level: "Enthusiast" }
+    ]
+  },
+  {
+    title: "Frontend Development",
     items: [
       { name: "HTML", level: "Advanced" },
       { name: "CSS", level: "Advanced" },
       { name: "JavaScript", level: "Proficient" },
-      { name: "Figma", level: "Proficient" },
-      { name: "Draw.io", level: "Proficient" },
       { name: "Tailwind CSS", level: "Enthusiast" },
-      { name: "Astro", level: "Enthusiast" }
+      { name: "Astro", level: "Intermediate" },
+      { name: "ASP.NET Web Forms", level: "Advanced" }
     ]
   },
   {
-    title: "Backend",
+    title: "Backend Development",
     items: [
       { name: "Java", level: "Advanced" },
       { name: "Node.js", level: "Intermediate" },
       { name: "C++", level: "Intermediate" },
-      { name: "PHP", level: "Enthusiast" }
+      { name: "PHP", level: "Enthusiast" },
+      { name: "VB.NET", level: "Advanced" },
+      { name: ".NET Framework", level: "Intermediate" },
     ]
   },
   {
-    title: "Databases",
+    title: "Database",
     items: [
-      { name: "SQL (Oracle)", level: "Proficient" },
+      { name: "PL/SQL (Oracle)", level: "Proficient" },
       { name: "MySQL", level: "Intermediate" }
     ]
   },
@@ -183,15 +224,22 @@ export const skills: Skill[] = [
       { name: "Scikit-learn", level: "Proficient" },
       { name: "NumPy", level: "Intermediate" },
       { name: "Matplotlib", level: "Intermediate" },
-      { name: "Power BI", level: "Basic" }
+      { name: "Power BI", level: "Enthusiast" }
     ]
   },
   {
     title: "Tools & Version Control",
     items: [
-      { name: "VS Code", level: "Advanced" },
+      { name: "Wazuh", level: "Proficient" },
+      { name: "Metasploit", level: "Proficient" },
+      { name: "Visual Studio Code", level: "Advanced" },
+      { name: "Visual Studio", level: "Advanced" },
+      { name: "Oracle SQL Developer", level: "Intermediate" },
       { name: "Git / GitHub", level: "Proficient" },
-      { name: "Code::Blocks", level: "Intermediate" }
+      { name: "Code::Blocks", level: "Intermediate" },
+      { name: "Anaconda", level: "Intermediate" },
+      { name: "Figma", level: "Intermediate" },
+      { name: "Draw.io", level: "Intermediate" }
     ]
   }
 ];
