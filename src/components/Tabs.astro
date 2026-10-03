@@ -1,31 +1,125 @@
 ---
-import type {Levels} from "../interfaces/interface"
+import type { Levels, Category } from "../interfaces/interface";
+import { proyectos } from "../content/db/data.ts";
 
 interface Props {
-    levels: Levels[],
-    page: string
+  levels: Levels[];
+  current?: string; // slug del proyecto abierto (ej. "/unah")
 }
 
-const {levels, page} = Astro.props as Props;
+const { levels, current } = Astro.props as Props;
 
+const categories: { id: Category; label: string }[] = [
+  { id: "cybersecurity", label: "Cybersecurity" },
+  { id: "development", label: "Development" },
+];
+
+const catOf = (url: string) => proyectos.find((p) => p.slug === url)?.category;
+
+// Abierta por defecto: la del proyecto actual; si no hay proyecto, Cybersecurity
+const open: Category = (current && catOf(current)) || "cybersecurity";
 ---
 
+<div class="project-explorer">
+  <div class="cat-switch" role="tablist" aria-label="Project categories">
+    {categories.map((c) => (
+      <button
+        type="button"
+        role="tab"
+        class={`cat-btn ${c.id === open ? "is-active" : ""}`}
+        data-cat={c.id}
+        aria-selected={c.id === open ? "true" : "false"}
+      >
+        {c.label}
+        <span class="cat-count">{levels.filter((l) => catOf(l.url) === c.id).length}</span>
+      </button>
+    ))}
+  </div>
 
-<nav class="tabs" role="tablist" aria-label="Proyectos">
-    <div class="max-w-6xl mx-auto">
-        <div class="flex items-center -mb-px overflow-x-auto">
-            {
-                levels.map( (item) => (
-                    <a
-                        href={ item.url }
-                        class={ `tab-button tab-${ ( item.title  === page) ? "active" : "inactive" } p-4 border-b-2 font-semibold transition-colors duration-200 flex-shrink-0` }
-                    >
-                        {item.title}
-                    </a>
-                ))
-            }
+  {categories.map((c) => {
+    const items = levels.filter((l) => catOf(l.url) === c.id);
+    return (
+      <div class={`cat-panel ${c.id === open ? "is-open" : ""}`} data-panel={c.id}>
+        <div class="cat-panel__inner">
+          {items.length > 0 ? (
+            <div class="hscroll">
+              <button type="button" class="hscroll__btn hscroll__btn--prev" aria-label="Scroll left">‹</button>
+              <nav class="hscroll__track" aria-label={`${c.label} projects`}>
+                {items.map((item) => (
+                  <a
+                    href={item.url}
+                    class={`tab ${item.url === current ? "is-active" : ""}`}
+                    aria-current={item.url === current ? "page" : undefined}
+                  >
+                    {item.title}
+                  </a>
+                ))}
+              </nav>
+              <button type="button" class="hscroll__btn hscroll__btn--next" aria-label="Scroll right">›</button>
+            </div>
+          ) : (
+            <p class="cat-empty">Projects in this area are coming soon.</p>
+          )}
         </div>
-    </div>
-</nav>
+      </div>
+    );
+  })}
+</div>
 
+<script>
+  document.querySelectorAll<HTMLElement>(".project-explorer").forEach((root) => {
+    const btns = root.querySelectorAll<HTMLButtonElement>(".cat-btn");
+    const panels = root.querySelectorAll<HTMLElement>(".cat-panel");
 
+    // Cambiar de categoría
+    btns.forEach((b) =>
+      b.addEventListener("click", () => {
+        btns.forEach((x) => {
+          const on = x === b;
+          x.classList.toggle("is-active", on);
+          x.setAttribute("aria-selected", String(on));
+        });
+        panels.forEach((p) => p.classList.toggle("is-open", p.dataset.panel === b.dataset.cat));
+        root
+          .querySelector(`[data-panel="${b.dataset.cat}"] .hscroll__track`)
+          ?.dispatchEvent(new Event("scroll"));
+      })
+    );
+
+    // Lista horizontal: flechas, bordes difuminados y rueda del mouse
+    root.querySelectorAll<HTMLElement>(".hscroll").forEach((wrap) => {
+      const track = wrap.querySelector<HTMLElement>(".hscroll__track")!;
+      const prev = wrap.querySelector<HTMLButtonElement>(".hscroll__btn--prev")!;
+      const next = wrap.querySelector<HTMLButtonElement>(".hscroll__btn--next")!;
+
+      const update = () => {
+        const max = track.scrollWidth - track.clientWidth - 1;
+        wrap.classList.toggle("can-prev", track.scrollLeft > 1);
+        wrap.classList.toggle("can-next", track.scrollLeft < max);
+      };
+
+      prev.addEventListener("click", () => track.scrollBy({ left: -track.clientWidth * 0.7 }));
+      next.addEventListener("click", () => track.scrollBy({ left: track.clientWidth * 0.7 }));
+      track.addEventListener("scroll", update, { passive: true });
+      addEventListener("resize", update);
+
+      // Rueda vertical → desplazamiento horizontal (sin bloquear la página en los extremos)
+      track.addEventListener(
+        "wheel",
+        (e) => {
+          if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+          const max = track.scrollWidth - track.clientWidth - 1;
+          if ((e.deltaY < 0 && track.scrollLeft <= 1) || (e.deltaY > 0 && track.scrollLeft >= max)) return;
+          e.preventDefault();
+          track.scrollLeft += e.deltaY;
+        },
+        { passive: false }
+      );
+
+      // Centrar el proyecto activo
+      const active = track.querySelector<HTMLElement>(".tab.is-active");
+      if (active) track.scrollLeft = active.offsetLeft - (track.clientWidth - active.offsetWidth) / 2;
+      update();
+    });
+  });
+</script>

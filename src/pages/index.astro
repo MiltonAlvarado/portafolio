@@ -1,27 +1,29 @@
 ---
 import Layout from "../layouts/layout.astro";
+import Background from "../components/background.astro";
 
-const pageTitle = "Inicio";
+const pageTitle = "Home";
 const links = [
-  { href: "/", label: "INICIO" },
-  { href: "/unah", label: "PROYECTOS" },
-  { href: "/aboutme", label: "SOBRE MÍ" },
-  { href: "/contact", label: "CONTACTO" },
+  { href: "/", label: "HOME" },
+  { href: "/projects", label: "PROJECTS" },
+  { href: "/aboutme", label: "ABOUT ME" },
+  { href: "/contact", label: "CONTACT" },
 ];
+const current = Astro.url.pathname;
 ---
 <Layout page={pageTitle}>
-  <main class="min-h-[100svh]">
-    <nav class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-zinc-950/20">
-      <div class="mx-auto max-w-7xl px-4 py-4">
-        <ul class="flex flex-wrap items-center justify-center gap-3">
+  <Background />
+
+  <main class="min-h-[100svh] flex flex-col">
+    <nav class="site-nav sticky top-0 z-50">
+      <div class="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
+        <a href="/" class="font-extrabold tracking-tight text-lg">MA<span class="text-[#7cc2ff]">.</span></a>
+        <ul class="flex gap-1">
           {links.map((l) => (
             <li>
-              <a
-                href={l.href}
-                class="inline-block rounded-xl bg-zinc-800/70 hover:bg-zinc-700/70
-                       ring-1 ring-white/10 px-4 py-2 text-sm font-semibold tracking-wide text-zinc-100
-                       transition-colors"
-              >
+              <a href={l.href}
+                 class={`px-3 py-2 rounded-lg text-xs sm:text-sm font-medium tracking-wide transition-colors
+                 ${current === l.href ? "text-white bg-white/10" : "text-zinc-400 hover:text-white hover:bg-white/5"}`}>
                 {l.label}
               </a>
             </li>
@@ -30,33 +32,36 @@ const links = [
       </div>
     </nav>
 
-    <div class="flex flex-row justify-center gap-40 h-[500px] mt-20"> 
+    <section class="flex-1 mx-auto w-full max-w-6xl px-6 py-16 grid gap-14 md:grid-cols-[1.2fr_1fr] items-center">
       <div>
-        <p1 class="h-440 w-400 text-4xl font-bold text-center mt-10  grow-0"> 
-            Milton Alvarado - Desarrollador Web Jr.  
-        </p1> 
-        <section class=" h-1 w-200 mt-5 bg-gray-400 grow-0 rounded-3xl mb-30"> 
-        </section> 
-        <h1 class="text-center mb-50">  
-          En este portafolio encontrará soluciones que combinan estética funcional,<br> 
-          arquitectura limpia y valor tangible. Le invito a recorrer los proyectos <br>
-          en los cuales muestran cómo transformo objetivos en productos fiables, <br>
-          listos para crecer y para generar confianza donde más importa.
+        <span class="reveal inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-zinc-300" style="--d:0ms">
+          <span class="badge-dot"></span> Available for new projects
+        </span>
+
+        <h1 class="reveal mt-6 text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05]" style="--d:100ms">
+          Milton Alvarado<br />
+          <span class="text-gradient">Cybersecurity SOC Analyst</span>
         </h1>
-        <div class="dots">
-          <span class="dot dot--red"></span>
-          <span class="dot dot--yellow"></span>
-          <span class="dot dot--green"></span>
+
+        <p class="reveal mt-6 max-w-[55ch] text-zinc-400 leading-relaxed" style="--d:200ms">
+          In this portfolio you will find solutions that combine functional aesthetics,
+          clean architecture and tangible value. I invite you to explore the projects
+          that show how I turn goals into reliable products,
+          ready to grow and to build trust where it matters most.
+        </p>
+
+        <div class="reveal mt-8 flex flex-wrap gap-3" style="--d:300ms">
+          <a href="/projects" class="btn-cta">See Projects <span>→</span></a>
+          <a href="/contact" class="btn-ghost">Contact</a>
         </div>
       </div>
-      <div>
-        <img src="/yo.jpg" alt="" class="w-120 h-120 relative rounded-3xl bg-zinc-900/60 ring-1 ring-white/10 p-2"/>
+
+      <div class="reveal-photo justify-self-center" style="--d:350ms">
+        <div class="avatar-frame">
+          <img src="/YoBCH.jpg" alt="Photo of Milton Alvarado"
+               class="block w-72 h-72 sm:w-96 sm:h-96 object-cover rounded-[26px] bg-zinc-900" />
+        </div>
       </div>
-        
-      
-
-
-    </div>
-
+    </section>
   </main>
 </Layout>

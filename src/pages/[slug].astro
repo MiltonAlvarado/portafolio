@@ -3,15 +3,15 @@ import Layout from "../layouts/layout.astro";
 import Sidebar from "../components/sidebar.astro";
 import HeroCard from "../components/herocard.astro";
 import SectionTitle from "../components/sectiontitle.astro";
-import { proyectos } from "../content/db/data.ts";
 import ProjectCard from "../components/projectcard.astro";
 import Tabs from "../components/Tabs.astro";
+import { proyectos } from "../content/db/data.ts";
 import { levels } from "../content/db/items";
-import type {Project} from "../interfaces/interface.ts";
+import type { Project } from "../interfaces/interface.ts";
 
 export async function getStaticPaths() {
   return proyectos.map((entry: Project) => ({
-    params: { slug: entry.slug}, props: { entry }
+    params: { slug: entry.slug }, props: { entry }
   }));
 }
 
@@ -19,36 +19,23 @@ interface Props {
   entry: Project
 }
 
-const {entry} = Astro.props as Props;
-
-interface Props {
-    page: string
-}
-
-const { page } = Astro.props as Props;
+const { entry } = Astro.props as Props;
 ---
 <Layout page={entry.pageTitle}>
   <div class="app">
     <Sidebar />
-    <main class="p-6">
+    <main class="content">
       <HeroCard />
-      <SectionTitle text="Proyectos" />
+      <SectionTitle text="Projects" />
 
-      <Tabs 
-          levels={levels}
-          page={page}
-        />
-        
-      <div class="">
-        <ProjectCard
-          titulo={entry.titulo}
-          descripcion={entry.descripcion}
-          link={entry.link}
-          img={entry.img}
-        />
-      </div>
+      <Tabs levels={levels} current={entry.slug} />
+
+      <ProjectCard
+        titulo={entry.titulo}
+        descripcion={entry.descripcion}
+        link={entry.link}
+        img={entry.img}
+      />
     </main>
   </div>
 </Layout>
-
-

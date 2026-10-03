@@ -1,22 +1,13 @@
 import type { Levels } from "../../interfaces/interface";
 
+// Orden de la lista horizontal. La categoría se toma de "proyectos" (data.ts) según la url.
 export const levels: Levels[] = [
-    {title: "Sistema de Universidad - UNAH",
-    url: "/unah"},
-    {title: "Sistema Facultad de Odontología - UNAH",
-    url: "/odontologia"},
-    {title: "Despliegue de Azure con Terraform",
-    url: "/terraform"},
-    {title: "Pokemon API",
-    url: "/poke"},
-    {title: "Sistema Ebay",
-    url: "/ebay"},
-    {title: "Generador Curriculum Vitae",
-    url: "/curriculum"},
-    {title: "Red neuronal para Reconocimiento de Rostros",
-    url: "/redneuronal"},
-    {title: "Lenguaje de Programación",
-    url: "/lenguajeprogramacion"},
-    
+    { title: "University System - UNAH", url: "/unah" },
+    { title: "School of Dentistry System - UNAH", url: "/odontologia" },
+    { title: "Azure Deployment with Terraform", url: "/terraform" },
+    { title: "Pokemon API", url: "/poke" },
+    { title: "eBay System", url: "/ebay" },
+    { title: "CV Generator", url: "/curriculum" },
+    { title: "Neural Network for Face Recognition", url: "/redneuronal" },
+    { title: "Programming Language", url: "/lenguajeprogramacion" },
 ];
-

@@ -1,13 +1,22 @@
 ---
 const items = [
-  { href: "/", label: "INICIO" },
-  { href: "/unah", label: "PROYECTOS" },
-  { href: "../aboutme", label: "SOBRE MÍ" },
-  { href: "../contact", label: "CONTACTO" },
+  { href: "/", label: "HOME" },
+  { href: "/projects", label: "PROJECTS" },
+  { href: "/aboutme", label: "ABOUT ME" },
+  { href: "/contact", label: "CONTACT" },
 ];
+
+// Página activa: /projects y las rutas de proyectos ([slug]) cuentan como PROJECTS
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const fixed = ["/", "/aboutme", "/contact"];
+const isActive = (href: string) =>
+  href === "/projects" ? !fixed.includes(path) : path === href;
 ---
 <aside class="sidebar">
-  {items.map((i) => (
-    <a class="nav-pill" href={i.href}>{i.label}</a>
-  ))}
+  <a href="/" class="sidebar__brand">MA<span>.</span></a>
+  <nav class="sidebar__nav">
+    {items.map((i) => (
+      <a class={`nav-pill ${isActive(i.href) ? "is-active" : ""}`} href={i.href}>{i.label}</a>
+    ))}
+  </nav>
 </aside>

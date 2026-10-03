@@ -1,0 +1,22 @@
+---
+import Layout from "../layouts/layout.astro";
+import Sidebar from "../components/sidebar.astro";
+import HeroCard from "../components/herocard.astro";
+import SectionTitle from "../components/sectiontitle.astro";
+import Tabs from "../components/Tabs.astro";
+import { levels } from "../content/db/items";
+---
+<Layout page="Projects">
+  <div class="app">
+    <Sidebar />
+    <main class="content">
+      <HeroCard />
+      <SectionTitle text="Projects" />
+
+      <!-- Sin proyecto seleccionado: abre Cybersecurity por defecto -->
+      <Tabs levels={levels} />
+
+      <p class="projects-hint">Select a project to see its details.</p>
+    </main>
+  </div>
+</Layout>

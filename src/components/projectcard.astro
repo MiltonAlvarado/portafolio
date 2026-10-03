@@ -1,32 +1,31 @@
 ---
-interface Link { label: string; href: string }
 interface Props {
   titulo: string;
   descripcion: string;
   link: string;
-  img?: string;     // nueva propiedad para imagen
-  alt?: string;     // alt opcional
+  img?: string;
+  alt?: string;
 }
 
 const { titulo, descripcion, link, img, alt = titulo } = Astro.props as Props;
 ---
 
 <article class="project-card">
-  <!-- Encabezado -->
   <header class="project-card__head">
     <h3 class="project-card__title">{titulo}</h3>
   </header>
 
-  <!-- Cuerpo: texto (izq) + imagen (der) -->
   <div class="project-card__content">
     <div class="project-card__text">
       <p class="project-card__desc">{descripcion}</p>
 
-      <footer class="project-card__footer">
-        <a href={link} class="btn-primary" target="_blank" rel="noopener">
-          Ver Proyecto
-        </a>
-      </footer>
+      {link && (
+        <footer class="project-card__footer">
+          <a href={link} class="btn-cta" target="_blank" rel="noopener">
+            View Project <span>→</span>
+          </a>
+        </footer>
+      )}
     </div>
 
     {img && (

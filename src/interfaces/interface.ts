@@ -4,7 +4,10 @@ export interface Levels {
 }
 
 
+export type Category = "cybersecurity" | "development";
+
 export interface Project {
+    category: Category;
     pageTitle: string;
     slug: string;
     titulo: string;
